@@ -1,0 +1,23 @@
+<div class="chat-container" [class.open]="isOpen" cdkDrag>
+    <div class="chat-header" cdkDragHandle>
+      <span>💬 Chat with Vanguard Assistant</span>
+      <mat-icon class="open-close-icon" *ngIf="isOpen" (click)="toggleChat()">keyboard_arrow_up</mat-icon>
+      <mat-icon class="open-close-icon" *ngIf="!isOpen" (click)="toggleChat()">keyboard_arrow_down</mat-icon>
+    </div>
+    <div class="chat-body" *ngIf="isOpen">
+      <div class="messages">
+        <div *ngFor="let msg of messages" [class.user]="msg.user">
+          <p>{{ msg.text }}</p>
+        </div>
+        <div class="typing-indicator bot" *ngIf="loading">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+      </div>
+      <form (submit)="sendMessage(userInput)">
+        <input [(ngModel)]="userInput" name="chatInput" placeholder="Ask a question..." required />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
