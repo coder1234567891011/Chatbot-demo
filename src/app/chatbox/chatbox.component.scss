@@ -1,17 +1,21 @@
-.chat-container {
+.drag-boundary {
   position: fixed;
+  inset: 0; /* top: 0; right: 0; bottom: 0; left: 0 */
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.chat-container {
+  position: sticky;
   bottom: 20px;
   right: 20px;
-  width: 300px;
+  width: 350px;
+  max-height: 450px;
   font-family: Arial, sans-serif;
   z-index: 9999;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-radius: 12px;
 
-  .open-close-icon{
-    position: relative;
-    top: 6px;
-    left: 6px;
-  }
 
   .typing-indicator {
     display: flex;
@@ -50,12 +54,14 @@
     padding: 10px;
     font-weight: bold;
     cursor: pointer;
+    justify-content: space-between;
+    display: flex!important;
   }
 
   .chat-body {
     background: #fff;
     border: 1px solid #ccc;
-    max-height: 400px;
+    max-height: 450px;
     display: flex;
     flex-direction: column;
 

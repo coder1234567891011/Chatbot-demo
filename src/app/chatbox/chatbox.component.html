@@ -1,4 +1,4 @@
-<div class="chat-container" [class.open]="isOpen" cdkDrag>
+<div #chatContainer class="chat-container" [class.open]="isOpen" cdkDrag [cdkDragFreeDragPosition]="cdkDragFreeDragPosition" [cdkDragConstrainPosition]="constrainPosition.bind(this)">
     <div class="chat-header" cdkDragHandle>
       <span>💬 Chat with Vanguard Assistant</span>
       <mat-icon class="open-close-icon" *ngIf="isOpen" (click)="toggleChat()">keyboard_arrow_up</mat-icon>

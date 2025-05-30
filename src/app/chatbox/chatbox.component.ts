@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-const GREETING_MESSAGE = "Hello Salim please Introduce yourself and what you are here for!"
+const GREETING_MESSAGE = "Hello!"
 
 @Component({
   selector: 'app-chatbox',
@@ -16,6 +16,8 @@ export class ChatboxComponent {
   isOpen = false;
   userInput = '';
   messages: { text: string, user: boolean }[] = [];
+
+  cdkDragFreeDragPosition = { x: 0, y: 0 };
 
   constructor(private http: HttpClient) {}
 
@@ -32,6 +34,19 @@ export class ChatboxComponent {
     },3000)
   }
 
+  constrainPosition(position: { x: number; y: number }): { x: number; y: number } {
+    const element = document.querySelector('.chat-container') as HTMLElement;
+    const parent = document.querySelector('.drag-boundary') as HTMLElement;
+  
+    const maxX = parent.clientWidth - element.clientWidth;
+    const maxY = parent.clientHeight - element.clientHeight;
+  
+    return {
+      x: Math.min(Math.max(0, position.x), maxX),
+      y: Math.min(Math.max(0, position.y), maxY)
+    };
+  }
+
   sendMessage(userInput:any) {
     if (!userInput.trim()) return;
 
@@ -46,6 +61,7 @@ export class ChatboxComponent {
     { message: userMessage })
       .subscribe(res => {
         this.messages.push({ text: res.reply, user: false });
+        this.userInput = '';
         this.loading = false;
       }, err => {
         this.messages.push({ text: "Sorry, there was an error.", user: false });
