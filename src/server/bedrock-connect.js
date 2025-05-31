@@ -2,11 +2,11 @@ const { BedrockAgentRuntimeClient, InvokeAgentCommand} = require("@aws-sdk/clien
 
 const bedrockClient = new BedrockAgentRuntimeClient({ region: "us-east-1" });
 
-async function invokeAgent(message) {
+async function invokeAgent(message, agentId, agentAliasId, sessionId) {
   const command = new InvokeAgentCommand({
-    agentId: "HYXOBEMAZZ", // ← Get this from Bedrock Agent console
-    agentAliasId: "5QZLFVB1SS", // ← Often 'DRAFT' or your published alias
-    sessionId: "session-1", // Use a UUID or keep it per user
+    agentId: agentId, // ← Get this from Bedrock Agent console
+    agentAliasId: agentAliasId, // ← Often 'DRAFT' or your published alias
+    sessionId: sessionId, // Use a UUID or keep it per user
     inputText: message
   });
 

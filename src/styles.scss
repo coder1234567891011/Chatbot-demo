@@ -1,39 +1,181 @@
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$demo-primary: mat.define-palette(mat.$indigo-palette);
-$demo-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$demo-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$demo-theme: mat.define-light-theme((
-  color: (
-    primary: $demo-primary,
-    accent: $demo-accent,
-    warn: $demo-warn,
-  )
-));
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($demo-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body {
+  height: auto;         // Or remove height altogether
+  overflow-y: auto;     // Ensures vertical scroll is allowed
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+    :root {
+      --primary-color: #2c2a29;
+      --accent-color: #990000;
+      --light-gray: #f7f7f7;
+      --medium-gray: #d1d1d1;
+      --dark-gray: #555;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      pointer-events: auto;
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      color: var(--primary-color);
+      line-height: 1.6;
+    }
+
+    h2, h3 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .hero {
+      background: url('./assets/istockphoto-1455167761-612x612.jpg') center/cover no-repeat;
+      padding: 120px 20px;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 20px auto;
+      font-size: 1.25em;
+    }
+
+    .section {
+      padding: 60px 20px;
+    }
+
+    .section.light {
+      background-color: var(--light-gray);
+    }
+
+    .section .content {
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .benefits, .stats, .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .benefit, .stat, .testimonial {
+      flex: 1 1 280px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .benefit h3 {
+      color: var(--accent-color);
+    }
+
+    .stat h3 {
+      font-size: 2em;
+      margin: 10px 0;
+    }
+
+    .testimonial blockquote {
+      font-style: italic;
+      color: var(--dark-gray);
+    }
+
+    .testimonial cite {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+
+    .cta {
+      background-color: var(--accent-color);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .cta h2 {
+      margin-bottom: 10px;
+    }
+
+    .cta p {
+      font-size: 1.2em;
+    }
+
+    .contact-form {
+      background: url('./assets/two-happy-busy-middle-aged-260nw-2479065515.webp') center/cover no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      padding: 80px 20px;
+      color: white;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      color: var(--primary-color);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--medium-gray);
+      border-radius: 6px;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent-color);
+      color: white;
+      font-size: 1.1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #800000;
+    }

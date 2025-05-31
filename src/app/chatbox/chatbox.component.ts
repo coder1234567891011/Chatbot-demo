@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { ViewEncapsulation } from '@angular/core';
+import { OnInit } from '@angular/core';
 
 const GREETING_MESSAGE = "Hello!"
 
@@ -8,10 +9,14 @@ const GREETING_MESSAGE = "Hello!"
   selector: 'app-chatbox',
   templateUrl: './chatbox.component.html',
   styleUrls: ['./chatbox.component.scss'],
-  providers:[HttpClient]
+  providers:[],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 
-export class ChatboxComponent {
+export class ChatboxComponent implements OnInit {
+  @Input('agentid') agentId: string = '';
+  @Input('agentaliasid') agentAliasId: string = '';
+  @Input('sessionid') sessionId: string = '';
   loading = false;
   isOpen = false;
   userInput = '';
@@ -19,7 +24,7 @@ export class ChatboxComponent {
 
   cdkDragFreeDragPosition = { x: 0, y: 0 };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private hostRef : ElementRef) {}
 
   toggleChat() {
     this.isOpen = !this.isOpen;
@@ -34,19 +39,6 @@ export class ChatboxComponent {
     },3000)
   }
 
-  constrainPosition(position: { x: number; y: number }): { x: number; y: number } {
-    const element = document.querySelector('.chat-container') as HTMLElement;
-    const parent = document.querySelector('.drag-boundary') as HTMLElement;
-  
-    const maxX = parent.clientWidth - element.clientWidth;
-    const maxY = parent.clientHeight - element.clientHeight;
-  
-    return {
-      x: Math.min(Math.max(0, position.x), maxX),
-      y: Math.min(Math.max(0, position.y), maxY)
-    };
-  }
-
   sendMessage(userInput:any) {
     if (!userInput.trim()) return;
 
@@ -58,7 +50,7 @@ export class ChatboxComponent {
 
     // Send to backend API
     this.http.post<{ reply: string }>('http://localhost:3000/api/chat', 
-    { message: userMessage })
+    { message: userMessage, agentId: this.agentId, agentAliasId:this.agentAliasId, sessionId: this.sessionId  })
       .subscribe(res => {
         this.messages.push({ text: res.reply, user: false });
         this.userInput = '';

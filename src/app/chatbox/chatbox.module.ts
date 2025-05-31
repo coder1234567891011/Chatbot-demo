@@ -1,9 +1,6 @@
 import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ChatboxComponent } from './chatbox/chatbox.component';
+import { ChatboxComponent } from './chatbox.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,12 +10,10 @@ import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   declarations: [
-    AppComponent,
     ChatboxComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -27,10 +22,14 @@ import { createCustomElement } from '@angular/elements';
   ],
   providers: [],
   entryComponents:[ChatboxComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [ChatboxComponent]
 })
 export class AppModule implements DoBootstrap { 
    constructor(private injector: Injector) {
+    const linkEl = document.createElement('link');
+    linkEl.href = 'https://fonts.googleapis.com/icon?family=Material+Icons';
+    linkEl.rel = 'stylesheet';
+    document.head.appendChild(linkEl);
     const el = createCustomElement(ChatboxComponent, { injector: this.injector });
     customElements.define('app-chatbox', el);
    }

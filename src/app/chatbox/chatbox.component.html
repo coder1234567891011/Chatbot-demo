@@ -1,4 +1,6 @@
-<div #chatContainer class="chat-container" [class.open]="isOpen" cdkDrag [cdkDragFreeDragPosition]="cdkDragFreeDragPosition" [cdkDragConstrainPosition]="constrainPosition.bind(this)">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<div class="overlay-container drag-boundary mat-typography">
+<div #chatContainer class="chat-container" [class.open]="isOpen" cdkDrag [cdkDragFreeDragPosition]="cdkDragFreeDragPosition" cdkDragBoundary=".drag-boundary">
     <div class="chat-header" cdkDragHandle>
       <span>💬 Chat with Vanguard Assistant</span>
       <mat-icon class="open-close-icon" *ngIf="isOpen" (click)="toggleChat()">keyboard_arrow_up</mat-icon>
@@ -21,3 +23,4 @@
       </form>
     </div>
   </div>
+</div>

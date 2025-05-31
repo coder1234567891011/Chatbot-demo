@@ -12,7 +12,7 @@ app.use(express.json());
 app.post('/api/chat', async (req, res) => {
   try {
     const userMessage = req.body.message;
-    const agentReply = await invokeAgent(userMessage);
+    const agentReply = await invokeAgent(userMessage, req.body.agentId, req.body.agentAliasId, req.body.sessionId);
     res.json({ reply: agentReply });
   } catch (err) {
     res.status(500).json({ error: err.message });
