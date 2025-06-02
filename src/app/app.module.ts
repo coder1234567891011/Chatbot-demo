@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon'
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { createCustomElement } from '@angular/elements';
+import { AuthConfigModule } from './auth/auth-config.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { createCustomElement } from '@angular/elements';
     HttpClientModule,
     BrowserAnimationsModule,
     MatIconModule,
-    DragDropModule
+    DragDropModule,
+    AuthConfigModule
   ],
   providers: [],
   entryComponents:[ChatboxComponent],

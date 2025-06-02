@@ -1,5 +1,5 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-<div class="overlay-container drag-boundary mat-typography">
+<div id="overlay-container" class="overlay-container drag-boundary mat-typography">
 <div #chatContainer class="chat-container" [class.open]="isOpen" cdkDrag [cdkDragFreeDragPosition]="cdkDragFreeDragPosition" cdkDragBoundary=".drag-boundary">
     <div class="chat-header" cdkDragHandle>
       <span>💬 Chat with Vanguard Assistant</span>
@@ -9,7 +9,7 @@
     <div class="chat-body" *ngIf="isOpen">
       <div class="messages">
         <div *ngFor="let msg of messages" [class.user]="msg.user">
-          <p>{{ msg.text }}</p>
+          <p [innerHtml]="msg.text"></p>
         </div>
         <div class="typing-indicator bot" *ngIf="loading">
             <span class="dot"></span>
