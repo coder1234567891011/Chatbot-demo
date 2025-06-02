@@ -7,7 +7,7 @@ import { AuthModule } from 'angular-auth-oidc-client';
         config: {
             authority: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_5Mr7wpzkz',
             redirectUrl: window.location.origin,
-            clientId: 'please-enter-auth0-clientId',
+            clientId: '1am3mbtnq1c7e0kp3fm9bdttjh',
             scope: 'openid profile offline_access',
             responseType: 'code',
             silentRenew: true,

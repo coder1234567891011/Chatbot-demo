@@ -8,7 +8,7 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 })
 export class AppComponent {
 
-   private readonly oidcSecurityService = inject(OidcSecurityService);
+  private readonly oidcSecurityService = inject(OidcSecurityService);
 
   configuration$ = this.oidcSecurityService.getConfiguration();
 
@@ -31,11 +31,11 @@ export class AppComponent {
   }
 
   logout(): void {
-  // Clear session storage
-  if (window.sessionStorage) {
-    window.sessionStorage.clear();
-  }
+    // Clear session storage
+    if (window.sessionStorage) {
+      window.sessionStorage.clear();
+    }
 
-  window.location.href = "https://<user pool domain>/logout?client_id=1am3mbtnq1c7e0kp3fm9bdttjh&logout_uri=<logout uri>";
-}
+    window.location.href = "https://us-east-15mr7wpzkz.auth.us-east-1.amazoncognito.com/logout?client_id=1am3mbtnq1c7e0kp3fm9bdttjh&logout_uri=https://advicechatbot.com";
+  }
 }

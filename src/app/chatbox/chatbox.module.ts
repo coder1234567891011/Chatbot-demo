@@ -21,7 +21,6 @@ import { createCustomElement } from '@angular/elements';
     DragDropModule
   ],
   providers: [],
-  entryComponents:[ChatboxComponent],
   bootstrap: [ChatboxComponent]
 })
 export class AppModule implements DoBootstrap { 

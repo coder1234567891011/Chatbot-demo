@@ -28,7 +28,6 @@ import { AuthConfigModule } from './auth/auth-config.module';
     AuthConfigModule
   ],
   providers: [],
-  entryComponents:[ChatboxComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule implements DoBootstrap { 
