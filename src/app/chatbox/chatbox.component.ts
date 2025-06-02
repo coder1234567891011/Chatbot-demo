@@ -24,7 +24,7 @@ export class ChatboxComponent implements OnInit {
   userInput = '';
   messages: { text: string, user: boolean, suggestedResponses?: string, graphs?: string }[] = [{text:"Hello! Welcome to Vanguard Group. How may I assist you today?",user: false}];
 
-  cdkDragFreeDragPosition = { x: 0 , y: 0 };
+  cdkDragFreeDragPosition = { x: 100 , y: 100};
 
   constructor(private http: HttpClient) {}
 

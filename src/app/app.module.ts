@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { createCustomElement } from '@angular/elements';
 import { AuthConfigModule } from './auth/auth-config.module';
+import {MatMenuModule} from '@angular/material/menu'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthConfigModule } from './auth/auth-config.module';
     BrowserAnimationsModule,
     MatIconModule,
     DragDropModule,
-    AuthConfigModule
+    AuthConfigModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,10 +5,10 @@ import { AuthModule } from 'angular-auth-oidc-client';
 @NgModule({
     imports: [AuthModule.forRoot({
         config: {
-            authority: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_5Mr7wpzkz',
-            redirectUrl: window.location.origin,
-            clientId: '1am3mbtnq1c7e0kp3fm9bdttjh',
-            scope: 'openid profile offline_access',
+            authority: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_C7hBBdWUI',
+            redirectUrl: 'https://advicechatbot.com/auth-callback',
+            clientId: 'p56hoqvlims7aer5hlf1d6lau',
+            scope: 'openid phone email',
             responseType: 'code',
             silentRenew: true,
             useRefreshToken: true,
