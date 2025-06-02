@@ -39,6 +39,6 @@ export class AppComponent {
       window.sessionStorage.clear();
     }
 
-    window.location.href = "https://us-east-1c7hbbdwui.auth.us-east-1.amazoncognito.com/login?client_id=p56hoqvlims7aer5hlf1d6lau&code_challenge=GEM5Km0MPoxga4Dbj9jP2Ta0PyYRbVP4IdT2h9UUKWo&code_challenge_method=S256&nonce=8b89a04a6723c1ac474abe97f5fe75e9caJ1iO731&redirect_uri=http://localhost:4200/auth-callback&response_type=code&scope=openid+phone+email";
+    window.location.href = "https://us-east-1c7hbbdwui.auth.us-east-1.amazoncognito.com/login?client_id=p56hoqvlims7aer5hlf1d6lau&code_challenge=GEM5Km0MPoxga4Dbj9jP2Ta0PyYRbVP4IdT2h9UUKWo&code_challenge_method=S256&nonce=8b89a04a6723c1ac474abe97f5fe75e9caJ1iO731&redirect_uri=https://advicechatbot.com/auth-callback&response_type=code&scope=openid+phone+email";
   }
 }

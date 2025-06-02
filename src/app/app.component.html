@@ -1,16 +1,32 @@
 <div *ngIf="isAuthenticated">
+  <div>
+    <mat-menu #appMenu="matMenu">
+      <ng-template matMenuContent>
+        <button (click)="logout()">Logout</button>
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Help</button>
+      </ng-template>
+    </mat-menu>
+
+    <button matIconButton [matMenuTriggerFor]="appMenu">
+      <mat-icon>Menu</mat-icon>
+    </button>
+  </div>
   <section class="hero">
     <h1>The confidence that comes with a dedicated advisor</h1>
-    <p>More than just investments—get guidance for life’s biggest decisions. From retirement to education planning, our advisors walk beside you every step of the way.</p>
+    <p>More than just investments—get guidance for life’s biggest decisions. From retirement to education planning, our
+      advisors walk beside you every step of the way.</p>
   </section>
   <section class="section light">
     <div class="content">
       <h2>Why Vanguard Personal Advisor?</h2>
-      <p>At Vanguard, we combine technology and human insight to help you create a plan that’s not only customized but built for the long term.</p>
+      <p>At Vanguard, we combine technology and human insight to help you create a plan that’s not only customized but
+        built for the long term.</p>
       <div class="benefits">
         <div class="benefit">
           <h3>Holistic Wealth Management</h3>
-          <p>We don't just manage your investments—we help align your entire financial life to your values and goals.</p>
+          <p>We don't just manage your investments—we help align your entire financial life to your values and goals.
+          </p>
         </div>
         <div class="benefit">
           <h3>Personalized Attention</h3>
@@ -32,7 +48,8 @@
           <cite>– Lisa M., Florida</cite>
         </div>
         <div class="testimonial">
-          <blockquote>"I always thought financial advisors were for the wealthy. Vanguard changed that view completely."</blockquote>
+          <blockquote>"I always thought financial advisors were for the wealthy. Vanguard changed that view completely."
+          </blockquote>
           <cite>– Jamal K., Oregon</cite>
         </div>
       </div>
