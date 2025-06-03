@@ -6,7 +6,7 @@ import { AuthModule } from 'angular-auth-oidc-client';
     imports: [AuthModule.forRoot({
         config: {
             authority: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_C7hBBdWUI',
-            redirectUrl: 'https://advicechatbot.com/auth-callback',
+            redirectUrl: window.origin + '/auth-callback',
             clientId: 'p56hoqvlims7aer5hlf1d6lau',
             scope: 'openid phone email',
             responseType: 'code',
