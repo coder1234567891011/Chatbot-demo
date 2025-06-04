@@ -4,7 +4,7 @@ const { OpenAI } = require('openai');
 require('dotenv').config();
 
 const app = express();
-const openai = new OpenAI({ apiKey: process.env.GPT_KEY });
+const openai = new OpenAI({ apiKey: process.env.GPT_KEY});
 
 app.use(cors({origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], allowedHeaders: ['Content-Type', 'Authorization']}));
 app.use(express.json());
