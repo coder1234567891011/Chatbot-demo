@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: chatbot-demo-cluster
+
+  TaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: ecsTaskExecutionRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: chatbot-task
+      RequiresCompatibilities: [FARGATE]
+      Cpu: 256
+      Memory: 512
+      NetworkMode: awsvpc
+      ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
+      ContainerDefinitions:
+        - Name: chatbot-container
+          Image: 897722706074.dkr.ecr.us-east-1.amazonaws.com/chatbot-demo:latest
+          PortMappings:
+            - ContainerPort: 80
+
+  ECSService:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: !Ref ECSCluster
+      DesiredCount: 1
+      LaunchType: FARGATE
+      TaskDefinition: !Ref TaskDefinition
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          Subnets:
+            - subnet-05efd86d3373424bd
+            - subnet-0cec2ad0eeb49da63
+            - subnet-0f60eca4e20611767
+            - subnet-0ce94da00d8e48810
+            - subnet-00ca4b3185a5de62f
+            - subnet-018201170b979928c
+          SecurityGroups:
+            - sg-0be0e00a331ab69dc
+
+Outputs:
+  ServiceName:
+    Value: !Ref ECSService
+  TaskDefinitionArn:
+    Value: !Ref TaskDefinition
