@@ -29,8 +29,8 @@ Resources:
       NetworkMode: awsvpc
       ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
       ContainerDefinitions:
-        - Name: chatbot-container
-          Image: 897722706074.dkr.ecr.us-east-1.amazonaws.com/chatbot-demo:latest
+        - Name: main-container
+          Image: chatbot-demo
           PortMappings:
             - ContainerPort: 80
 
