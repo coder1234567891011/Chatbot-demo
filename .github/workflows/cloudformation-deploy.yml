@@ -44,6 +44,6 @@ jobs:
         aws cloudformation deploy \
           --stack-name $STACK_NAME \
           --template-file $TEMPLATE_FILE \
-          --capabilities CAPABILITY_IAM \
+          --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
           --parameter-overrides \
             ContainerImage=${{ steps.build-image.outputs.image }}
