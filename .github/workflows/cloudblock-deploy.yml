@@ -26,8 +26,11 @@ jobs:
 
     - name: Install Cloudblocks CLI
       run: |
-        curl -s https://cloudblocks.io/install.sh | bash
+        curl -Lo cloudblocks.tar.gz https://github.com/cloudblocks/cloudblocks/releases/latest/download/cloudblocks-linux-x86_64.tar.gz
+        mkdir -p ~/.cloudblocks/bin
+        tar -xzf cloudblocks.tar.gz -C ~/.cloudblocks/bin
         echo "$HOME/.cloudblocks/bin" >> $GITHUB_PATH
+
 
     - name: Login to Amazon ECR
       id: login-ecr
