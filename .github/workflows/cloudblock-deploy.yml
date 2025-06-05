@@ -24,13 +24,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: Install Cloudblocks CLI
-      run: |
-        curl -Lo cloudblocks.tar.gz https://github.com/cloudblocks/cloudblocks/releases/latest/download/cloudblocks-linux-x86_64.tar.gz
-        mkdir -p ~/.cloudblocks/bin
-        tar -xzf cloudblocks.tar.gz -C ~/.cloudblocks/bin
-        echo "$HOME/.cloudblocks/bin" >> $GITHUB_PATH
-
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -47,5 +40,6 @@ jobs:
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
     - name: Deploy with Cloudblocks
-      run: |
-        cloudblocks deploy --file cloudblocks.yaml --var image=${{ steps.build-image.outputs.image }}
+      uses: cloudblocks/cloudblocks-action@v1
+      with:
+        cloudblocks-file: cloudblocks.yaml
