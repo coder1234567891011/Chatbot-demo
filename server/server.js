@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { OpenAI } = require('openai');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -8,6 +9,11 @@ const openai = new OpenAI({ apiKey: process.env.GPT_KEY});
 
 app.use(cors({origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], allowedHeaders: ['Content-Type', 'Authorization']}));
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname,'../../dist/demo')))
+app.get('*',(req, resp)=>{
+    resp.sendFile(path.join(__dirname, '../../dist/demo/index.html'))
+});
 
 app.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
@@ -20,4 +26,4 @@ app.post('/api/chat', async (req, res) => {
   res.json({ reply: completion.choices[0].message.content });
 });
 
-app.listen(3000, () => console.log('AI server listening on port 3000'));
+app.listen(8080, () => console.log('AI server listening on port 3000'));
