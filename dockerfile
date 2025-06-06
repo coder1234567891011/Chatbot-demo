@@ -9,7 +9,7 @@ FROM node:22
 WORKDIR /app
 
 # Install backend dependencies and http-server + concurrently
-COPY ./server ./server
+COPY server server
 COPY package.json .
 RUN npm install && npm install -g http-server concurrently
 
