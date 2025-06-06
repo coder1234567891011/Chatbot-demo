@@ -42,8 +42,9 @@ jobs:
     - name: Deploy CloudFormation stack
       run: |
         aws cloudformation deploy \
-          --stack-name $STACK_NAME \
-          --template-file $TEMPLATE_FILE \
-          --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
-          --parameter-overrides \
-            ContainerImage=${{ steps.build-image.outputs.image }}
+        --stack-name chatbot-stack \
+        --template-file .aws/infra.yaml \
+        --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
+        --parameter-overrides \
+          VpcId=vpc-0df761a303c14b613 \
+          Subnets="subnet-05efd86d3373424bd, subnet-0cec2ad0eeb49da63, subnet-0f60eca4e20611767, subnet-0ce94da00d8e48810, subnet-00ca4b3185a5de62f, subnet-018201170b979928c"
