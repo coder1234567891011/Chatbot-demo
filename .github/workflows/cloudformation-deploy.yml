@@ -42,7 +42,7 @@ jobs:
     - name: Deploy CloudFormation stack
       run: |
         aws cloudformation deploy \
-        --stack-name ${env.STACK_NAME} \
+        --stack-name chatbot-demo-stack \
         --template-file .aws/infra.yaml \
         --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
         --parameter-overrides \
