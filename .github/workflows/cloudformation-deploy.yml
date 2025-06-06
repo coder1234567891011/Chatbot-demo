@@ -6,7 +6,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  STACK_NAME: chatbot-stack
+  STACK_NAME: chatbot-demo-stack
   TEMPLATE_FILE: .aws/infra.yaml
   ECR_REPOSITORY: chatbot-demo
 
