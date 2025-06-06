@@ -1,7 +1,7 @@
 FROM node:22 AS builder
 WORKDIR /app
 COPY ./src ./src
-WORKDIR /app/src
+WORKDIR /app
 RUN npm ci && npm run build --configuration=production
 
 # === Final Image ===
