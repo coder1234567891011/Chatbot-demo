@@ -1,19 +1,25 @@
-FROM node:22
+FROM node:22 AS builder
+WORKDIR /app
+COPY ./frontend ./frontend
+WORKDIR /app/frontend
+RUN npm ci && npm run build --configuration=production
 
+# === Final Image ===
+FROM node:22
 WORKDIR /app
 
-# Copy and install dependencies
-COPY package*.json ./
-RUN npm install
+# Install backend dependencies and http-server + concurrently
+COPY ./server ./server
+COPY package.json .
+RUN npm install && npm install -g http-server concurrently
 
-# Copy rest of the code
-COPY . .
+# Copy built Angular app
+COPY --from=builder /app/frontend/dist/your-angular-app-name ./frontend-dist
 
-# Install globally the `concurrently` tool
-RUN npm install -g concurrently
+# Expose both ports
+EXPOSE 3000 8080
 
-# Expose the ports your processes need (adjust if necessary)
-EXPOSE 8080 3000
-
-# Run both processes in parallel
-CMD ["concurrently", "--kill-others", "--names", "frontend,backend", "npm start", "node src/server/server.js"]
+# Start both servers concurrently
+CMD concurrently \
+  "http-server ./frontend-dist -p 8080" \
+  "node src/server/server.js"
