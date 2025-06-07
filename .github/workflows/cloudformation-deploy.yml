@@ -46,5 +46,6 @@ jobs:
         --template-file .aws/infra.yaml \
         --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
         --parameter-overrides \
+          ImageUri=897722706074.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG \
           VpcId=vpc-0df761a303c14b613 \
           Subnets="subnet-05efd86d3373424bd, subnet-0cec2ad0eeb49da63, subnet-0f60eca4e20611767, subnet-0ce94da00d8e48810, subnet-00ca4b3185a5de62f, subnet-018201170b979928c"
