@@ -26,4 +26,4 @@ app.post('/api/chat', async (req, res) => {
   res.json({ reply: completion.choices[0].message.content });
 });
 
-app.listen(8080, () => console.log('AI server listening on port 3000'));
+app.listen(8080, () => console.log('AI server listening on port 8080'));
