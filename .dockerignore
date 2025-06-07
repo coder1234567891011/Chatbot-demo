@@ -5,4 +5,3 @@ dist
 Dockerfile
 *.log
 *.md
-*.env

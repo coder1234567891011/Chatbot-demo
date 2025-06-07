@@ -1,4 +1,4 @@
-FROM node:22 AS builder
+FROM node:18 AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
@@ -6,7 +6,7 @@ COPY . .
 RUN npm run build --configuration=production
 
 # Stage 2: Serve with Express
-FROM node:22
+FROM node:18
 WORKDIR /app
 COPY --from=builder /app/dist/demo ./dist/demo
 COPY --from=builder /app/server ./server
