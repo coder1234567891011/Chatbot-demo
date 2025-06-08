@@ -8,8 +8,7 @@ RUN npm run build --configuration=production
 # Stage 2: Serve with Express
 FROM node:18
 WORKDIR /app
-COPY --from=builder /app/dist/demo ./dist/demo
-COPY --from=builder /app/server ./server
+COPY --from=builder /app/dist/ ./dist/
 COPY package*.json ./
 RUN npm ci --omit=dev
 RUN ls -l /app/dist
