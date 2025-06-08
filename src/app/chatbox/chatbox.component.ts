@@ -67,7 +67,7 @@ export class ChatboxComponent implements OnInit {
     this.loading = true;
 
     // Send to backend APId1ra5p3c4yynd2.cloudfront.net
-    this.http.post<{ reply: string }>('http://localhost:8080/api/chat', 
+    this.http.post<{ reply: string }>(window.origin +'/api/chat', 
     { message: userMessage, agentId: this.agentId, agentAliasId:this.agentAliasId, sessionId: this.sessionId  })
       .subscribe(res => {
         this.messages.push({ text: res.reply, user: false });
