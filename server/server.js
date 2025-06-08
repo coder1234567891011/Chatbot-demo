@@ -10,13 +10,13 @@ const openai = new OpenAI({ apiKey: process.env.GPT_KEY});
 app.use(cors({origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], allowedHeaders: ['Content-Type', 'Authorization']}));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname,'../../dist/demo')))
+app.use(express.static(path.join(__dirname,'/../dist/demo')))
 
 app.get('/healthcheck', (req, res) => res.status(200).send('OK'));
 
 app.get('*',(req, resp)=>{
     console.log(__dirname)
-    resp.sendFile(path.join(__dirname, '../../dist/demo/index.html'))
+    resp.sendFile(path.join(__dirname, '/../dist/demo/index.html'))
 });
 
 app.post('/api/chat', async (req, res) => {
