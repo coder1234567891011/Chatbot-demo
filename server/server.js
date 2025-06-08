@@ -11,6 +11,7 @@ app.use(cors({origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname,'../../dist/demo')))
+app.get('/health', (req, res) => res.status(200).send('OK'));
 app.get('*',(req, resp)=>{
     resp.sendFile(path.join(__dirname, '../../dist/demo/index.html'))
 });
@@ -26,4 +27,4 @@ app.post('/api/chat', async (req, res) => {
   res.json({ reply: completion.choices[0].message.content });
 });
 
-app.listen(8080, () => console.log('AI server listening on port 8080'));
+app.listen(80, () => console.log('AI server listening on port 80'));
