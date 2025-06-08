@@ -49,4 +49,4 @@ jobs:
           SSLCertificateArn=arn:aws:acm:us-east-1:897722706074:certificate/1983ae68-b062-4410-abee-474c683966bb \
           ImageUri=${{ steps.build-image.outputs.image }} \
           VpcId=vpc-0df761a303c14b613 \
-          GPT_KEY=${{ secrets.GPT_KEY } \
+          GPT_KEY=${{ secrets.GPT_KEY }} \
