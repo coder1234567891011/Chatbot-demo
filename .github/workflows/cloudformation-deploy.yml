@@ -34,7 +34,6 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
-        GPT_KEY: ${{ secrets.GPT_KEY }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -50,3 +49,4 @@ jobs:
           SSLCertificateArn=arn:aws:acm:us-east-1:897722706074:certificate/1983ae68-b062-4410-abee-474c683966bb \
           ImageUri=${{ steps.build-image.outputs.image }} \
           VpcId=vpc-0df761a303c14b613 \
+          GPT_KEY=${{ secrets.GPT_KEY } \

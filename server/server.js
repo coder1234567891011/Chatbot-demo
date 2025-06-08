@@ -15,12 +15,13 @@ app.use(express.static(path.join(__dirname,'/../dist/demo')))
 app.get('/healthcheck', (req, res) => res.status(200).send('OK'));
 
 app.get('*',(req, resp)=>{
-    console.log(__dirname)
+    console.log(process.env)
     resp.sendFile(path.join(__dirname, '/../dist/demo/index.html'))
 });
 
 app.post('/api/chat', async (req, res) => {
-  const userMessage = req.body.message;
+  try{
+    const userMessage = req.body.message;
 
   const completion = await openai.chat.completions.create({
     model: 'gpt-4',
@@ -28,6 +29,11 @@ app.post('/api/chat', async (req, res) => {
   });
 
   res.json({ reply: completion.choices[0].message.content });
+  }catch(err){
+    req.json({error: err})
+    console.log(err)
+  }
+  
 });
 
-app.listen(80, () => console.log('AI server listening on port 80'));
+app.listen(80, () => console.log('AI server listening on port 80', process.env));
