@@ -12,5 +12,6 @@ COPY --from=builder /app/dist/demo ./dist/demo
 COPY --from=builder /app/server ./server
 COPY package*.json ./
 RUN npm ci --omit=dev
+RUN ls -l /app/dist
 EXPOSE 80
 CMD ["node", "server/server.js"]

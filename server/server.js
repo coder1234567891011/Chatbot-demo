@@ -11,8 +11,11 @@ app.use(cors({origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname,'../../dist/demo')))
+
 app.get('/healthcheck', (req, res) => res.status(200).send('OK'));
+
 app.get('*',(req, resp)=>{
+    console.log(__dirname)
     resp.sendFile(path.join(__dirname, '../../dist/demo/index.html'))
 });
 
